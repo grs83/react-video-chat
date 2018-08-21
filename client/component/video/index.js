@@ -1,38 +1,32 @@
 import React from 'react';
+import Overlay from '../overlay';
 
 const Video = () =>  {
-    const style = {
-        layout: {
-            width: '90vw',
-            height: '80vh',
-            backgroundColor: '#f4f4f4',
-            boxShadow: '0 0 25px #424242'
-        },
-        video: {
-            width: '100%', 
-            height: '100%'
-        }
-    }
-
-    function getMedia() {
-        const constraints = {audio:  true, video: true};
+    (function getMedia() {
+        const constraints = {audio: false, video: true};
 
         navigator.getUserMedia(constraints, function(stream) {
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-
             const videoArea = document.querySelector("video");
             videoArea.src = window.URL.createObjectURL(stream);
             videoArea.play();
         }, function(err) {
             console.log("Error", err);
         })
+    })()
+
+    const style = {
+        video: {
+            height: '100vh',
+            width: '100vw',
+            boxShadow: '0 0 25px #424242'
+        }
     }
 
-    getMedia()
-
     return (
-        <div style={style.layout}>
+        <div>
             <video style={style.video} autoPlay></video>
+            <Overlay />
         </div>
     )
 }

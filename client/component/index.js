@@ -1,28 +1,45 @@
-import React from 'react';
-import Overlay from './overlay';
+import React, { Component } from 'react';
 import Video from './video';
+import Home from './home';
 
-const Index = () =>  {
+class Index extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            page: 'home',
+        }
+        this.handlePage = this.handlePage.bind(this)
+    }
+
+    handlePage(page) {
+        this.setState({ page })
+    }
+
+    render() {
     const style = {
         layout: {
             width: '100vw',
             height: '100vh',
             background: 'linear-gradient(150deg, #b4a284, #5A7189 30%)',
             color: '#f4f4f4'
-        },
-        title: {
-            fontWeight: '200',
-            fontSize: '3em'
         }
     }
 
     return (
-        <div style={style.layout} className='flexColumn'>
-            <h1 style={style.title}>Video Chat</h1>
-            <Video />
-            <Overlay />
+        <div style={style.layout}>
+            {(() => {
+                switch (this.state.page) {
+                    case 'home':
+                    return <Home handlePage={this.handlePage}/>;
+                    case 'chat':
+                    return <Video handlePage={this.handlePage}/>;
+                    default:
+                    return <Home handlePage={this.handlePage}/>;
+                 }
+            })()}
         </div>
     )
+    }
 }
 
 export default Index;
