@@ -5,3 +5,16 @@
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.flexRow {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center
+}

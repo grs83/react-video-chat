@@ -6,6 +6,8 @@
   "scripts": {
     "webpack": "webpack",
     "serve": "webpack-dev-server",
+    "start": "node server/index.js",
+    "watch": "nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
